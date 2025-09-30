@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender_account: one
+  receiver_account: one
+  amount: 9.99
+  status: 1
+  suspicious: false
+
+two:
+  sender_account: two
+  receiver_account: two
+  amount: 9.99
+  status: 1
+  suspicious: false
