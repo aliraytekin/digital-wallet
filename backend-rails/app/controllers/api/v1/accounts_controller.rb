@@ -1,4 +1,4 @@
-class Api::V1::AccountsController < Api::V1::BaseController
+class Api::V1::AccountsController < Api::BaseController
   def index
     accounts = current_user.accounts
     render json: accounts

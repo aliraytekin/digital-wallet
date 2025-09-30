@@ -1,4 +1,4 @@
-class Api::V1::TransactionsController < Api::V1::BaseController
+class Api::V1::TransactionsController < Api::BaseController
   def show
     account = current_user.accounts.find(params[:id])
 

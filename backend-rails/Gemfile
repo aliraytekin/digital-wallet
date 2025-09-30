@@ -47,5 +47,6 @@ end
 
 gem "ostruct"
 gem "devise"
+gem "devise-jwt"
 gem "faker"
 gem "httparty"
