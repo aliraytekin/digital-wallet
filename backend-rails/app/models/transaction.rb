@@ -2,7 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :sender_account, class_name: "Account"
   belongs_to :receiver_account, class_name: "Account"
 
-  enum status: { pending: 0, completed: 1, failed: -1, cancelled: -2, flagged: -3 }
+  enum status: { pending: 0, completed: 1, failed: -1, flagged: -2 }
 
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
   validate :enough_balance, on: :create
@@ -30,6 +30,10 @@ class Transaction < ApplicationRecord
 
   def check_for_fraud
     result = FraudCheckService.check(self)
-    update!(suspicious: true, status: :flagged) if result["suspicious"]
+    if result["suspicious"]
+      update!(suspicious: true, status: :flagged)
+    else
+      update!(status: :completed)
+    end
   end
 end

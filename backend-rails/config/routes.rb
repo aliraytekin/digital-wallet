@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       }
     namespace :v1 do
       resources :accounts, only: %i[index show create] do
-        resources :transactions, only: %i[show create]
+        resources :transactions, only: %i[index create]
       end
     end
   end

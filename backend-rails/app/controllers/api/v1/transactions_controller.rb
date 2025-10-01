@@ -1,5 +1,5 @@
 class Api::V1::TransactionsController < Api::BaseController
-  def show
+  def index
     account = current_user.accounts.find(params[:id])
 
     transactions = Transaction.where(sender_account: account).or(Transaction.where(receiver_account: account))
