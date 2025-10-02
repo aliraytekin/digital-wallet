@@ -1,13 +1,13 @@
 import { LoginInput, RegisterInput } from "../types/user";
 
-const API_URL = "http://localhost:3000/v1";
+const API_URL = "http://localhost:3000/api";
 
-export async function login(input: LoginInput): Promise<string> {
+export async function login(input: LoginInput): Promise<String> {
   const res = await fetch(`${API_URL}/users/sign_in`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user: input }),
-  });
+  })
 
   if (!res.ok) throw new Error("Login failed");
 

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  get '/current_user', to: 'current_user#index'
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: "api/sessions",
+    registrations: "api/registrations"
+  }
   namespace :api do
-    devise_for :users,
-      controllers: {
-        session: "api/sessions",
-        registration: "api/registrations"
-      }
     namespace :v1 do
       resources :accounts, only: %i[index show create] do
         resources :transactions, only: %i[index create]
