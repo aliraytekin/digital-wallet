@@ -1,6 +1,6 @@
 import { Account, AccountCreateInput } from "../types/account"
 
-const API_URL = "http://localhost:3000/v1"
+const API_URL = "http://localhost:4000/v1"
 
 export async function fetchAccounts(token: string): Promise<Account[]> { // I will use React Context later on
   const res = await fetch(`${API_URL}/accounts`, {
