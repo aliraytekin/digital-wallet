@@ -1,26 +1,8 @@
-import { LoginInput, RegisterInput } from "../types/user";
+import { UserLoginInput, UserRegisterInput, User } from "../types/user";
 
-const API_URL = "http://localhost:3000/api";
+const API_URL = "http://localhost:3000/";
 
-export async function login(input: LoginInput): Promise<String> {
-  const res = await fetch(`${API_URL}/users/sign_in`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user: input }),
-  })
-
-  if (!res.ok) throw new Error("Login failed");
-
-  const token = res.headers.get("Authorization")?.replace("Bearer ", "");
-  if (token) return token;
-
-  const data = await res.json();
-  if ("token" in data) return data.token;
-
-  throw new Error("No token received");
-}
-
-export async function register(input: RegisterInput): Promise<string> {
+export async function registerUser(input: UserRegisterInput): Promise<{ token: string, user: User }> {
   const res = await fetch(`${API_URL}/users`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -30,15 +12,34 @@ export async function register(input: RegisterInput): Promise<string> {
   if (!res.ok) throw new Error("Registration failed");
 
   const token = res.headers.get("Authorization")?.replace("Bearer ", "");
-  if (token) return token;
-
   const data = await res.json();
-  if ("token" in data) return data.token;
 
-  throw new Error("No token received");
+  return {
+    token: token || data.token,
+    user: data.user
+  }
 }
 
-export async function logout(token: string): Promise<void> {
+export async function loginUser(input: UserLoginInput): Promise<{ token: string, user: User }> {
+  const res = await fetch(`${API_URL}/sign_in`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user: input }),
+  })
+
+  if (!res.ok) throw new Error("Login failed");
+
+  const token = res.headers.get("Authorization")?.replace("Bearer ", "");
+  const data = await res.json();
+
+  return {
+    token: token || data.token,
+    user: data.user
+  }
+}
+
+
+export async function logoutUser(token: string): Promise<void> {
   await fetch(`${API_URL}/users/sign_out`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
