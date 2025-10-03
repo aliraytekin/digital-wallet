@@ -1,6 +1,6 @@
 import { UserLoginInput, UserRegisterInput, User } from "../types/user";
 
-const API_URL = "http://localhost:3000/";
+const API_URL = "http://localhost:4000/";
 
 export async function registerUser(input: UserRegisterInput): Promise<{ token: string, user: User }> {
   const res = await fetch(`${API_URL}/users`, {
