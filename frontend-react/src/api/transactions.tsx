@@ -1,6 +1,6 @@
 import { Transaction, TransactionCreateInput } from "../types/transaction"
 
-const API_URL = "http://localhost:4000/v1";
+const API_URL = "http://localhost:4000/api/v1";
 
 export async function fetchTransactions(
   token: string,
