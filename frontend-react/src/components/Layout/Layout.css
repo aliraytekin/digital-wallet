@@ -33,8 +33,3 @@
 .nav-links a:hover {
   text-decoration: none;
 }
-
-.content {
-  flex: 1;
-  padding: 2rem;
-}
