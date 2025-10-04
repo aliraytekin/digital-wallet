@@ -5,7 +5,7 @@ interface ButtonProps {
   text: string;
   to?: string;
   onClick?: () => void;
-  variant?: "primary" | "primary-outline" | "secondary" | "secondary-outline"
+  variant?: "primary" | "primary-outline" | "primary-shining" | "secondary" | "secondary-outline"
 }
 
 export default function Button({ text, to, onClick, variant = "primary" }: ButtonProps) {
