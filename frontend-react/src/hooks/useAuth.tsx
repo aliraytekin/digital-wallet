@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { loginUser, registerUser } from "../api/auth";
+import { useNavigate } from "react-router"
 import { User } from "../types/user"
 
 export function useAuth() {
+  const navigate = useNavigate();
+
   const [token, setToken] = useState<string | null >(null);
   const [user, setUser] = useState<User | null >(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -13,8 +16,11 @@ export function useAuth() {
     const savedUser = localStorage.getItem("user");
 
     if (savedToken && savedUser) {
-      setToken(savedToken);
-      setUser(JSON.parse(savedUser));
+      if (savedToken) setToken(savedToken);
+
+      if (savedUser && savedUser !== "undefined" && savedUser !== "null") {
+        setUser(JSON.parse(savedUser));
+      }
     }
   }, []);
 
@@ -45,6 +51,7 @@ export function useAuth() {
       setUser(user);
       localStorage.setItem("token", token)
       localStorage.setItem("user", JSON.stringify(user));
+      navigate("/")
     } catch (err: any) {
       setError(err.message || "Login failed" );
     } finally {

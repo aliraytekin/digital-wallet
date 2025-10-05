@@ -1,0 +1,36 @@
+.accounts-container {
+  margin: 3rem;
+}
+
+.accounts-container h2 {
+  text-align: center;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.account-card {
+  padding: 2rem 3rem;
+  box-shadow: 0 4px 16px 6px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  background-color: var(--bg);
+  transition: transform 0.2s ease;
+}
+
+.account-card:hover {
+  transform: translateY(-6px);
+}
+
+.balance {
+  font-size: 1.8rem;
+  color: #2a7bf6;
+  margin: 0.5rem 0;
+}
+
+.account-number {
+  font-size: 0.9rem;
+  color: #666;
+}

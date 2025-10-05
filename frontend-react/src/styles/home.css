@@ -6,6 +6,7 @@
   align-items: center;
   background-size: 200% 200%;
   justify-content: center;
+  position: relative;
   background-image: linear-gradient(200deg, #90CAF9, #F48FB1, #FFCC80);
   animation: gradientChange 15s ease infinite;
 }
@@ -42,4 +43,35 @@
   font-weight: bold;
   color: white;
   margin-bottom: 2rem;
+}
+
+
+/* Features cards */
+
+.features {
+  width: 100vw;
+  height: 70vh;
+  background: var(--bg, #F5F5F5);
+}
+
+.features h2 {
+  margin-top: 0;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.feature-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 2rem;
+  max-width: 300px;
+  text-align: left;
 }

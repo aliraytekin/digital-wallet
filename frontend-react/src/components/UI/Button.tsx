@@ -1,5 +1,5 @@
 import {Link} from "react-router"
-import "./Button.css"
+import "../../styles/button.css"
 
 interface ButtonProps {
   text: string;
@@ -9,15 +9,14 @@ interface ButtonProps {
 }
 
 export default function Button({ text, to, onClick, variant = "primary" }: ButtonProps) {
-  if (to) {
-    return(
-      <Link to={to} className={`btn ${variant}`}>
+    const className = `btn ${variant}`;
+
+    return to ? (
+      <Link to={to} className={className}>
         {text}
       </Link>
-    )
-  }
-  return(
-    <button className={`btn ${variant}`} onClick={onClick}>
+    ) : (
+    <button className={className} onClick={onClick}>
       {text}
     </button>
   )

@@ -1,0 +1,15 @@
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard h1 {
+  font-size: 1.8rem;
+  color: #222;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-text {
+  text-align: center;
+}
