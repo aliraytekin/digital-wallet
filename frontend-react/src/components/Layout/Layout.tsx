@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
 import Button from "../UI/Button"
-import "./Layout.css";
+import "../../styles/layout.css";
 
 interface LayoutProps {
   children: ReactNode;
@@ -20,7 +20,7 @@ export default function Layout({ children }: LayoutProps) {
   return(
     <div className="layout">
       <nav className="navbar">
-        <h1 className="logo">Canto</h1>
+        <Link to="/" className="logo">Canto</Link>
         <ul className="nav-links">
           {user ? (
             <>

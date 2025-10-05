@@ -3,7 +3,7 @@ import { UserLoginInput, UserRegisterInput, User } from "../types/user";
 const API_URL = "http://localhost:4000";
 
 export async function registerUser(input: UserRegisterInput): Promise<{ token: string, user: User }> {
-  const res = await fetch(`${API_URL}/users`, {
+  const res = await fetch(`${API_URL}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user: input }),
@@ -21,7 +21,7 @@ export async function registerUser(input: UserRegisterInput): Promise<{ token: s
 }
 
 export async function loginUser(input: UserLoginInput): Promise<{ token: string, user: User }> {
-  const res = await fetch(`${API_URL}/sign_in`, {
+  const res = await fetch(`${API_URL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user: input }),
@@ -32,9 +32,12 @@ export async function loginUser(input: UserLoginInput): Promise<{ token: string,
   const token = res.headers.get("Authorization")?.replace("Bearer ", "");
   const data = await res.json();
 
+  console.log("token", token);
+  console.log("data", data)
+
   return {
     token: token || data.token,
-    user: data.user
+    user: data.data
   }
 }
 

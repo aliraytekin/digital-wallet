@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Home from "./pages/Home"
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -17,42 +17,40 @@ function App() {
   })
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={
+    <Routes>
+      <Route path="/" element={
+        <Layout>
+          <Home />
+        </Layout>
+          } />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      <Route path="/dashboard"
+      element={
+        <PrivateRoute>
           <Layout>
-            <Home />
+            <Dashboard />
           </Layout>
-            } />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        </PrivateRoute>
+      } />
+      <Route path="/transactions" element={
+        <PrivateRoute>
+          <Layout>
+            <Transactions />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/account/:id" element={
+        <PrivateRoute>
+          <Layout>
+            <AccountDetails />
+          </Layout>
+        </PrivateRoute>
+      } />
 
-        <Route path="/dashboard"
-        element={
-          <PrivateRoute>
-            <Layout>
-              <Dashboard />
-            </Layout>
-          </PrivateRoute>
-        } />
-        <Route path="/transactions" element={
-          <PrivateRoute>
-            <Layout>
-              <Transactions />
-            </Layout>
-          </PrivateRoute>
-        } />
-        <Route path="/account/:id" element={
-          <PrivateRoute>
-            <Layout>
-              <AccountDetails />
-            </Layout>
-          </PrivateRoute>
-        } />
-
-        <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
-      </Routes>
-    </Router>
+      <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
+    </Routes>
   );
 }
 
