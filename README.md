@@ -20,14 +20,14 @@ It simulates a digital wallet system where users can:
 - RSpec for testing
 - JWT authentication for security
 
-🤖 Fraud Detection Microservice
+## Fraud Detection Microservice
 
 - Python (FastAPI)
 - Simple anomaly detection based on transaction amount patterns
 - Communicates with the Rails API via HTTP
 - Will be extended with ML models (Isolation Forest, etc.)
 
-💡 Frontend
+## Frontend
 
 - React + TypeScript
 - Dashboard with account balances and transactions
