@@ -21,22 +21,12 @@ function App() {
     return user ? children : <Navigate to="/login" />;
   })
 
-  const LayoutRoute = (({children}: {children: JSX.Element}) => {
-    if (loading) {
-      return <div>Loading...</div>
-    }
-
-    return user ? children : children
-  })
-
   return (
     <Routes>
       <Route path="/" element={
-        <LayoutRoute>
           <Layout>
             <Home />
           </Layout>
-        </LayoutRoute>
           } />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

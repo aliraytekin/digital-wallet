@@ -26,11 +26,11 @@
 
 .balance {
   font-size: 1.8rem;
-  color: #2a7bf6;
+  color: #2a7bf6 !important;
   margin: 0.5rem 0;
 }
 
-.account-number {
+.account-type, .account-id {
   font-size: 0.9rem;
-  color: #666;
+  color: #666 !important;
 }
