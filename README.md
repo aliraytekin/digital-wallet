@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates how Ruby on Rails, Python (FastAPI), and React + TypeScript can be combined to build a secure, scalable, and intelligent digital banking platform.
+This project demonstrates how Ruby on Rails, Python (FastAPI), and React + TypeScript can be combined to build a secure (JWT token), scalable, and intelligent digital banking platform.
 
 It simulates a digital wallet system where users can:
 
