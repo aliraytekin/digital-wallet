@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import { fetchAccounts } from "../../api/account";
 import { Account } from "../../types/account"
 import AccountBalanceCard from "./AccountBalanceCard";
-import "../../styles/account.css"
+import "../../styles/accounts.css"
 
 export default function AccountList() {
   const [accounts, setAccounts] = useState<Account[]>([]);

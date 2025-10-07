@@ -6,17 +6,18 @@ interface ButtonProps {
   to?: string;
   onClick?: () => void;
   variant?: "primary" | "primary-outline" | "primary-shining" | "secondary" | "secondary-outline"
+  className?: string;
 }
 
-export default function Button({ text, to, onClick, variant = "primary" }: ButtonProps) {
-    const className = `btn ${variant}`;
+export default function Button({ text, to, onClick, variant = "primary", className }: ButtonProps) {
+    const btn_variant = `btn ${variant}`;
 
     return to ? (
-      <Link to={to} className={className}>
+      <Link to={to} className={`${btn_variant} ${className}`}>
         {text}
       </Link>
     ) : (
-    <button className={className} onClick={onClick}>
+    <button className={`${btn_variant} ${className}`} onClick={onClick}>
       {text}
     </button>
   )

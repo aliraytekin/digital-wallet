@@ -1,13 +1,3 @@
-.register-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(200deg, #90CAF9, #F48FB1, #FFCC80);
-  background-size: 400% 400%;
-  height: 100vh;
-  animation: gradientChange 20s ease infinite;
-}
-
 .register-form {
   padding: 2rem 3rem;
   background: white;
@@ -34,15 +24,9 @@
   font-weight: bold;
 }
 
-.form-groups input {
+.form-groups input, select {
   width: 100%;
   border-radius: 6px;
   padding: 0.6rem;
   border: 1px solid var(--primary);
-}
-
-.error {
-  color: #e53935;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
 }

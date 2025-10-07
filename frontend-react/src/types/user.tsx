@@ -4,6 +4,11 @@ export interface User {
   password: string;
 }
 
+export interface AuthUser {
+  token: string;
+  createdAt: number;
+}
+
 export interface UserRegisterInput {
   email: string;
   password: string;

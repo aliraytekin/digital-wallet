@@ -23,7 +23,7 @@ export async function fetchAccount(
 
 export async function createAccount(
   token: string,
-  account: AccountCreateInput
+  account: AccountCreateInput | null
 ): Promise<Account> {
   const res = await fetch(`${API_URL}/accounts`, {
     method: "POST",

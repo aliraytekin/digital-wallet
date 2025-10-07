@@ -1,14 +1,21 @@
 import Button from "../components/UI/Button"
+import { useAuth } from "../hooks/useAuth"
 import "../styles/home.css"
 
 export default function Home() {
+  const { user } = useAuth();
+
   return (
     <>
       <section className="hero">
         <h1>Manage Your Money Smarter</h1>
         <p>A secure bank with integrated fraud detection and real-time analytics *</p>
-        <Button text="Register now" to="/register" variant="primary-shining" ></Button>
-      </section>
+        {user ? (
+          <Button text="Dashboard" to="/dashboard" variant="primary-shining" className="btn-bigger"></Button>
+        ) : (
+          <Button text="Register now" to="/register" variant="primary-shining" className="btn-bigger"></Button>
+        )}
+        </section>
 
       <section className="features">
         <h2>Why Use Digital Wallet?</h2>

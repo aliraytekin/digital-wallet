@@ -2,7 +2,7 @@ export interface Account {
   id: number;
   user_id: number;
   account_type: string;
-  balance: number;
+  balance: string;
   currency: string;
   account_number: number;
 }
@@ -10,5 +10,5 @@ export interface Account {
 export interface AccountCreateInput {
   account_type: string,
   currency: string,
-  balance: number,
+  balance: string,
 }

@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import "../styles/account.css"
+import "../styles/register.css"
 import { useAuth } from "../hooks/useAuth";
 
 export default function Register() {
@@ -15,7 +15,7 @@ export default function Register() {
   }
 
   return (
-    <div className="register-page">
+    <div className="form-container">
       <form className="register-form" onSubmit={handleSubmit}>
         <h2>Register</h2>
         {error && <p className="error">{error}</p>}

@@ -1,4 +1,4 @@
-import "../../styles/account.css";
+import "../../styles/accounts.css";
 import { Account } from "../../types/account";
 
 interface Props {

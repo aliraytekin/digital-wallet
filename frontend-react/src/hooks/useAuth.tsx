@@ -1,70 +1,104 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { loginUser, registerUser } from "../api/auth";
-import { useNavigate } from "react-router"
-import { User } from "../types/user"
+import { useNavigate } from "react-router";
+import type { AuthUser } from "../types/user";
 
 export function useAuth() {
   const navigate = useNavigate();
+  const TOKEN_EXPIRY_MINUTES = 30;
 
-  const [token, setToken] = useState<string | null >(null);
-  const [user, setUser] = useState<User | null >(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null)
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
-    const savedUser = localStorage.getItem("user");
+    const createdAt = localStorage.getItem("token_created_at");
 
-    if (savedToken && savedUser) {
-      if (savedToken) setToken(savedToken);
+    if (savedToken && createdAt) {
+      const ageMinutes =
+        (Date.now() - parseInt(createdAt, 10)) / 1000 / 60;
 
-      if (savedUser && savedUser !== "undefined" && savedUser !== "null") {
-        setUser(JSON.parse(savedUser));
+      if (ageMinutes < TOKEN_EXPIRY_MINUTES) {
+        setUser({
+          token: savedToken,
+          createdAt: parseInt(createdAt, 10),
+        });
+      } else {
+        logout();
       }
     }
+
+    setLoading(false);
   }, []);
 
-  async function register(email: string, password: string, password_confirmation: string) {
-    try {
-      setLoading(true)
-      const { token, user } = await registerUser({email, password, password_confirmation})
-      setToken(token);
-      setUser(user);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message || "Registration failed");
-      } else {
-        setError("Something went wrong")
+  const register = useCallback(
+    async (email: string, password: string, password_confirmation: string) => {
+      try {
+        setLoading(true);
+        const { token } = await registerUser({ email, password, password_confirmation });
+        const createdAt = Date.now();
+
+        setUser({ token, createdAt });
+        localStorage.setItem("token", token);
+        localStorage.setItem("token_created_at", createdAt.toString());
+        navigate("/dashboard");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message || "Registration failed");
+        } else {
+          setError("Something went wrong");
+        }
+      } finally {
+        setLoading(false);
       }
-    } finally {
-      setLoading(false)
-    }
-  }
+    },
+    [navigate]
+  );
 
-  async function login(email: string, password: string) {
-    try {
-      setLoading(true);
-      const { token, user } = await loginUser({email, password});
-      setToken(token);
-      setUser(user);
-      localStorage.setItem("token", token)
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/")
-    } catch (err: any) {
-      setError(err.message || "Login failed" );
-    } finally {
-      setLoading(false);
-    }
-  }
+  const login = useCallback(
+    async (email: string, password: string) => {
+      try {
+        setLoading(true);
+        const { token } = await loginUser({ email, password });
+        const createdAt = Date.now();
 
-  function logout() {
+        setUser({ token, createdAt });
+        localStorage.setItem("token", token);
+        localStorage.setItem("token_created_at", createdAt.toString());
+        navigate("/dashboard");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message || "Login failed");
+        } else {
+          setError("Something went wrong");
+        }
+      } finally {
+        setLoading(false);
+      }
+    },
+    [navigate]
+  );
+
+  const logout = useCallback(() => {
     setUser(null);
-    setToken(null);
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  }
+    localStorage.removeItem("token_created_at");
+    navigate("/login");
+  }, [navigate]);
 
-  return { user, token, loading, error, register, login, logout };
+  useEffect(() => {
+    if (!user) return
+
+    const remainingTime =
+      TOKEN_EXPIRY_MINUTES * 60 * 1000 - (Date.now() - user.createdAt);
+
+    const timer = setTimeout(() => {
+      logout();
+    }, remainingTime)
+
+    return() => clearTimeout(timer);
+  }, [user, logout])
+
+  return { user, loading, error, register, login, logout };
 }

@@ -13,3 +13,10 @@
 .dashboard-text {
   text-align: center;
 }
+
+.container-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}

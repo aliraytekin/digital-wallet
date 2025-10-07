@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
 import Button from "../UI/Button"
 import "../../styles/layout.css";
@@ -11,6 +11,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout();
@@ -24,8 +25,12 @@ export default function Layout({ children }: LayoutProps) {
         <ul className="nav-links">
           {user ? (
             <>
-              <li><Button to="/dashboard" text="Dashboard"></Button></li>
-              <li><Button to="/transactions" text="Transactions" /></li>
+              {location.pathname !== "/dashboard" && (
+                <li><Button to="/dashboard" text="Dashboard"></Button></li>
+              )}
+              {location.pathname !== "/transactions" && (
+                <li><Button to="/transactions" text="Transactions" /></li>
+              )}
               <li><Button onClick={handleLogout} text="Log out" /></li>
             </>
           ) : (
