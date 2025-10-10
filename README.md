@@ -11,8 +11,6 @@ It simulates a digital wallet system where users can:
 - Track transactions
 - Detect fraudulent activity using basic anomaly detection (will be using AI later on to detect fraud)
 
----
-
 # Tech Stack
 ## Backend (Core API)
 
