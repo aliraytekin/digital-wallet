@@ -42,13 +42,13 @@ It simulates a digital wallet system where users can:
 ```bash
 git clone https://github.com/aliraytekin/digital-wallet.git
 cd digital-wallet
+
+docker compose build
+docker compose up
 ```
 
 ---
 
-```bash
-docker compose build
-docker compose up
 
 This will start:
 
