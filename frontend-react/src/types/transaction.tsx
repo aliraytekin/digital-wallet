@@ -10,6 +10,8 @@ export interface Transaction {
 }
 
 export interface TransactionCreateInput {
-  amount: number,
-  description?: string
+  sender_account_id: number;
+  receiver_account_number: string;
+  amount: number;
+  description?: string;
 }

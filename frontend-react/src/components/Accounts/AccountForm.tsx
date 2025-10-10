@@ -55,7 +55,7 @@ export default function AccountForm() {
         balance,
         currency,
       });
-      alert("Account created successfully!");
+
       navigate("/dashboard");
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Account creation failed.");

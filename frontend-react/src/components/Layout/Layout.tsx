@@ -28,8 +28,8 @@ export default function Layout({ children }: LayoutProps) {
               {location.pathname !== "/dashboard" && (
                 <li><Button to="/dashboard" text="Dashboard"></Button></li>
               )}
-              {location.pathname !== "/transactions" && (
-                <li><Button to="/transactions" text="Transactions" /></li>
+              {location.pathname === "/dashboard" && (
+                <li><Button to="/accounts" text="New Account" /></li>
               )}
               <li><Button onClick={handleLogout} text="Log out" /></li>
             </>

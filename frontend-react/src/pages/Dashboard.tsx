@@ -9,7 +9,7 @@ export default function Dashboard() {
       <p className="dashboard-text">Here is an overview of your accounts and your transactions</p>
       <AccountList />
       <div className="container-btn">
-        <Button to="/accounts" text="Create new account" className="dashboard-btn"></Button>
+        <Button to="/account/:id/transactions" text="New transactions" className="dashboard-btn"></Button>
       </div>
     </div>
   )
