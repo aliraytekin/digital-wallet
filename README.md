@@ -37,12 +37,18 @@ It simulates a digital wallet system where users can:
 
 ---
 
-# 🐳 Run with Docker
+# Clone the repo
 
 ```bash
 git clone https://github.com/aliraytekin/digital-wallet.git
 cd digital-wallet
+```
 
+--- 
+
+# Run with Docker
+
+```bash
 docker compose build
 docker compose up
 ```
