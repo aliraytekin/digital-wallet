@@ -11,12 +11,11 @@ import { useAuth } from "./hooks/useAuth"
 import { JSX } from "react"
 
 function App() {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
 
   const PrivateRoute = (({children}: {children: JSX.Element}) => {
-    if (loading) {
-      return <div>Loading...</div>
-    }
+    const { user, loading } = useAuth(); // set user again as !user when global
+    if (loading) return <div>Loading...</div>
 
     return user ? children : <Navigate to="/login" />;
   })
