@@ -42,6 +42,7 @@ It simulates a digital wallet system where users can:
 ```bash
 git clone https://github.com/aliraytekin/digital-wallet.git
 cd digital-wallet
+```
 
 ---
 
