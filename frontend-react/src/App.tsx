@@ -39,7 +39,7 @@ function App() {
           </Layout>
         </PrivateRoute>
       } />
-      <Route path="/transactions" element={
+      <Route path="/account/:id/transactions" element={
         <PrivateRoute>
           <Layout>
             <Transactions />

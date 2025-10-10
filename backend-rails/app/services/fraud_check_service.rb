@@ -1,8 +1,8 @@
-require 'httpparty'
+require 'httparty'
 
 class FraudCheckService
   include HTTParty
-  base_uri ENV.fetch("FRAUD_SERVICE_ERL", "http://localhost:8000")
+  base_uri ENV.fetch("FRAUD_SERVICE_URL", "http://localhost:8000")
 
   def self.check(transaction)
     response = post("/check_transaction",
