@@ -2,12 +2,10 @@
   display: inline-block;
   text-decoration: none;
   padding: 0.6rem 1.2rem !important;
-  border-radius: 10px;
+  border-radius: 10em !important;
   font-weight: bold;
   cursor: pointer;
   border: none;
-  overflow: hidden;
-  position: relative;
 }
 
 .btn.primary {
@@ -20,28 +18,6 @@
 .btn.primary:hover {
   background: linear-gradient(135deg, #3F51B5, #9C27B0, #E91E63);
   background-position: right center;
-}
-
-.btn.primary-shining {
-  color: white;
-  background: linear-gradient(135deg, #3F51B5, #9C27B0, #E91E63);
-}
-
-.btn.primary-shining::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75px;
-  width: 30px;
-  height: 100%;
-  transform: skewX(-20deg);
-  animation: shimmer 3s infinite;
-  background: rgba(255,255,255,0.2);
-}
-
-@keyframes shimmer {
-  0% { left: -75px; }
-  100% { left: 125%; }
 }
 
 .btn.primary-outline {
@@ -59,6 +35,17 @@
   cursor: not-allowed;
 }
 
-.btn-bigger {
-  padding: 0.8rem 1.6rem !important;
+.button-home {
+  background-color: white;
+  color: black;
+  font-size: 17px;
+  padding: 1em 2em !important;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 black;
+}
+
+.button-home:hover {
+  box-shadow: 0 0 0 0 black;
+  transform: translateY(2px) translateX(2px);
 }
