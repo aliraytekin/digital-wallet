@@ -30,6 +30,7 @@ export default function AccountDetails() {
         <p><strong>ID:</strong> {account.id}</p>
         <p><strong>Type:</strong> {account.account_type}</p>
         <p><strong>Balance:</strong> {Number(account.balance).toFixed(2)} {account.currency}</p>
+        <p><strong>Account Number:</strong> {account.account_number}</p>
       </div>
 
       <button onClick={() => navigate("/dashboard")} className="btn primary">

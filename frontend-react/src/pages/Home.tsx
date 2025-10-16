@@ -11,9 +11,9 @@ export default function Home() {
         <h1>Manage Your Money Smarter</h1>
         <p>A secure bank with integrated fraud detection and real-time analytics *</p>
         {user ? (
-          <Button text="Dashboard" to="/dashboard" variant="primary-shining" className="btn-bigger"></Button>
+          <Button text="Dashboard" to="/dashboard" variant="button-home" className="btn-bigger"></Button>
         ) : (
-          <Button text="Register now" to="/register" variant="primary-shining" className="btn-bigger"></Button>
+          <Button text="Register now" to="/register" variant="button-home"></Button>
         )}
         </section>
 

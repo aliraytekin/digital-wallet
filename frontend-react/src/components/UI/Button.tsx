@@ -5,7 +5,7 @@ interface ButtonProps {
   text: string;
   to?: string;
   onClick?: () => void;
-  variant?: "primary" | "primary-outline" | "primary-shining" | "secondary" | "secondary-outline"
+  variant?: "primary" | "primary-outline" | "primary-shining" | "button-home"
   className?: string;
 }
 
